@@ -6,6 +6,10 @@ TagManager:
   tags:
   - HorObst
   - VerObst
+  - Platform
+  - Ball
+  - Gate
+  - Wall
   layers:
   - Default
   - TransparentFX

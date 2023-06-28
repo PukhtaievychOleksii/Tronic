@@ -6,20 +6,27 @@ using Unity.MLAgents.Sensors;
 using Unity.MLAgents.Actuators;
 using UnityEditor;
 
-public class TronicAgent : Agent
+
+
+public class TronicAgent : Agent, Spawnable
 {
     [SerializeField] private GameObject ball;
     [SerializeField] private GameObject background;
     [SerializeField] private Transform leftBound;
     [SerializeField] private Transform rightBound;
     [SerializeField] private float speed;
+    [SerializeField] private List<BlockScript> blocks;
+    [SerializeField] private Transform spawnPoint;
     private float previousStepDistance = 0f;
     private float currentStepDistance = 0f;
 
     public override void OnEpisodeBegin()
     {
-        transform.localPosition = new Vector3(0, transform.localPosition.y, 0);
-        ball.GetComponent<BallScript>().respawn();
+       // transform.localPosition = new Vector3(0, transform.localPosition.y, 0);
+       // ball.GetComponent<BallScript>().respawn();
+      /*  foreach(BlockScript block in blocks){
+            block.ResetColor();
+        }*/
     }
     public override void CollectObservations(VectorSensor sensor)
     {
@@ -63,15 +70,31 @@ public class TronicAgent : Agent
     public void Reward()
     {
         SetReward(1f);
-        background.GetComponent<Background>().SetWin();
+        try {
+            background.GetComponent<Background>().SetWin();
+        }
+        catch{}
        // EndEpisode();
     }
 
     public void Punish()
     {
         SetReward(-1f);
-        background.GetComponent<Background>().SetLost();
+        try
+        {
+            background.GetComponent<Background>().SetLost();
+        }
+        catch { }
         EndEpisode();
     }
 
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Ball") Reward();
+    }
+
+    public void Spawn()
+    {
+        transform.position = spawnPoint.position;
+    }
 }

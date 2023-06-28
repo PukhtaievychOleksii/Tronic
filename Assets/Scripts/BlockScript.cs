@@ -5,14 +5,10 @@ using UnityEngine;
 public class BlockScript : MonoBehaviour
 {
     [SerializeField] List<Color> breakColors;
+    private int colorIndex = 0;
     void Start()
     {
-        if(breakColors.Count > 0)
-        {
-            GetComponent<SpriteRenderer>().color = breakColors[0];
-            breakColors.RemoveAt(0);
-        }
-        
+        ResetColor();  
     }
 
     // Update is called once per frame
@@ -21,19 +17,30 @@ public class BlockScript : MonoBehaviour
         
     }
 
-    
-
-    
-    public void OnBlockEnter2D()
+    public void ResetColor()
     {
         if (breakColors.Count > 0)
         {
+            this.gameObject.SetActive(true);
             GetComponent<SpriteRenderer>().color = breakColors[0];
-            breakColors.RemoveAt(0);
+            colorIndex = 0;
+        }
+    }
+
+
+
+
+    public void OnBlockEnter2D()
+    {
+        if (colorIndex < breakColors.Count - 1)
+        {
+            colorIndex++;
+            GetComponent<SpriteRenderer>().color = breakColors[colorIndex] ;
         }
         else
         {
-            Destroy(this.gameObject);
+            this.gameObject.SetActive(false);
+            //Destroy(this.gameObject);
         }
     }
 }

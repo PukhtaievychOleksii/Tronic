@@ -1,0 +1,38 @@
+{
+    "TronicBehavior": {
+        "checkpoints": [
+            {
+                "steps": 499960,
+                "file_path": "results\\Test1\\TronicBehavior\\TronicBehavior-499960.onnx",
+                "reward": 0.5902564033834089,
+                "creation_time": 1674652672.467274,
+                "auxillary_file_paths": [
+                    "results\\Test1\\TronicBehavior\\TronicBehavior-499960.pt"
+                ]
+            },
+            {
+                "steps": 500019,
+                "file_path": "results\\Test1\\TronicBehavior\\TronicBehavior-500019.onnx",
+                "reward": 0.5949576198265462,
+                "creation_time": 1674652672.6767132,
+                "auxillary_file_paths": [
+                    "results\\Test1\\TronicBehavior\\TronicBehavior-500019.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 500019,
+            "file_path": "results\\Test1\\TronicBehavior.onnx",
+            "reward": 0.5949576198265462,
+            "creation_time": 1674652672.6767132,
+            "auxillary_file_paths": [
+                "results\\Test1\\TronicBehavior\\TronicBehavior-500019.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.29.0",
+        "torch_version": "1.13.1+cpu"
+    }
+}
